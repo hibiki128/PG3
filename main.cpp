@@ -2,16 +2,7 @@
 #include "windows.h"
 #include "random"
 
-// 関数ポインタの定義（int型の引数を取り、void型を返す関数を指す）
-typedef void (*PFunc)(int);
-
-// タイムアウトを設定する関数
-void setTimeout(int second) {
-    Sleep(second * 1000); // 秒単位で待機
-}
-
-// 半丁ゲーム関数
-void HanChou(PFunc callback) {
+void HanChou() {
     int which = 0;
 
     // ランダムデバイスと乱数生成器の初期化
@@ -41,13 +32,23 @@ void HanChou(PFunc callback) {
     // サイコロの目を表示
     printf("サイコロの目 : %d\n", dice);
 
-    // コールバック関数を使ってタイムアウトを設定
-    callback(3);  // 3秒待機
+    // タイムアウト用のラムダ関数を定義して使用
+    auto timeout = [](int seconds) {
+        Sleep(seconds * 1000);  // 秒単位で待機
+        };
+
+    // 奇数か偶数かを判定するラムダ関数
+    auto isEven = [](int number) -> bool {
+        return number % 2 == 0;
+        };
+
+    // 3秒待機
+    timeout(3);
 
     // サイコロの目が偶数か奇数かで結果を判断
-    if (dice % 2 == 0) {
+    if (isEven(dice)) {
         printf("ディーラー : 丁！！\n");
-        callback(1);  // 1秒待機
+        timeout(1);  // 1秒待機
         if (which == 1) {
             printf("正解！！\n");
         }
@@ -57,7 +58,7 @@ void HanChou(PFunc callback) {
     }
     else {
         printf("ディーラー : 半！！\n");
-        callback(1);  // 1秒待機
+        timeout(1);  // 1秒待機
         if (which == 0) {
             printf("正解！！\n");
         }
@@ -68,8 +69,8 @@ void HanChou(PFunc callback) {
 }
 
 int main() {
-    // setTimeout関数をコールバック関数として渡す
-    HanChou(setTimeout);
+    // HanChou関数を実行
+    HanChou();
 
     return 0;
 }
