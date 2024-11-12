@@ -129,14 +129,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameConsole.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Template.cpp" />
+    <ClCompile Include="NintendoSwitch.cpp" />
+    <ClCompile Include="PS5.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Template.h" />
+    <ClInclude Include="GameConsole.h" />
+    <ClInclude Include="NintendoSwitch.h" />
+    <ClInclude Include="PS5.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
