@@ -1,19 +1,17 @@
 #include "stdio.h"
-#include"GameConsole.h"
-#include"PS5.h"
-#include"NintendoSwitch.h"
+#include "Circle.h"
+#include "Rectangle.h"
 
 int main() {
-    GameConsole* consoles[] = { new PS5(), new NintendoSwitch() };
+    IShape* shapes[] = { new Circle(), new Rectangle() };
 
-    // 各ゲーム機でPlay()を呼び出す
-    for (GameConsole* console : consoles) {
-        console->Play();
+    for (IShape* shape : shapes) {
+        shape->Draw();
     }
 
     // メモリ解放
-    for (GameConsole* console : consoles) {
-        delete console;
+    for (IShape* shape : shapes) {
+        delete shape;
     }
 
     return 0;
