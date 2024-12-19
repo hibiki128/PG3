@@ -8,6 +8,8 @@ void BaseObject::Init() {
 	//カラーのセット
 	objColor_.Initialize();
 	objColor_.SetColor(Vector4(1, 1, 1, 1));
+	// ライティングのセット
+	lighting_ = true;
 }
 
 void BaseObject::Update() {
@@ -19,7 +21,7 @@ void BaseObject::Update() {
 }
 
 void BaseObject::Draw(const ViewProjection& viewProjection) {
-	obj3d_->Draw(transform_, viewProjection, &objColor_);
+	obj3d_->Draw(transform_, viewProjection, &objColor_, lighting_);
 }
 
 Vector3 BaseObject::GetWorldPosition() const {
@@ -54,6 +56,11 @@ void BaseObject::DebugTransform(const std::string className)
 	}
 	ImGui::DragFloat3((className + "大きさ").c_str(), &transform_.scale_.x, 0.1f);
 	ImGui::End();
+}
+
+void BaseObject::SetLighting(bool lighting)
+{
+	lighting_ = lighting;
 }
 
 

@@ -111,6 +111,9 @@
     <Filter Include="ソースファイル\application\Base">
       <UniqueIdentifier>{faf8b8dc-bf7d-4fc7-ad07-1dd625a6b9a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソースファイル\application\Player">
+      <UniqueIdentifier>{657e5fb2-989e-46c9-ae16-2c6e861bfe76}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -304,6 +307,15 @@
     </ClCompile>
     <ClCompile Include="myEngine\3d\transform\ObjColor.cpp">
       <Filter>ソースファイル\myEngine\3d\color</Filter>
+    </ClCompile>
+    <ClCompile Include="application\Player\Player.cpp">
+      <Filter>ソースファイル\application\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="application\Command\Command.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="application\Input\InputHandler.cpp">
+      <Filter>ソースファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -538,6 +550,11 @@
     <ClInclude Include="myEngine\3d\transform\ObjColor.h">
       <Filter>ソースファイル\myEngine\3d\color</Filter>
     </ClInclude>
+    <ClInclude Include="application\Player\Player.h">
+      <Filter>ソースファイル\application\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="application\Command\Command.h" />
+    <ClInclude Include="application\Input\InputHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="resources\shaders\Particle\Particle.PS.hlsl">

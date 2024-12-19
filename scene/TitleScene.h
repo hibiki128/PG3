@@ -9,6 +9,9 @@
 #include"Object3d.h"
 #include"WorldTransform.h"
 #include"ParticleEmitter.h"
+#include"application/Player/Player.h"
+#include"application/Input/InputHandler.h"
+#include"application/Command/Command.h"
 
 class TitleScene :public BaseScene
 {
@@ -58,13 +61,7 @@ private:
 	ViewProjection vp_;
 	std::unique_ptr<DebugCamera> debugCamera_;
 
-	WorldTransform wt1_;
-	WorldTransform wt2_;
-
-	std::unique_ptr<Object3d> walk_;
-	std::unique_ptr<Object3d> sphere_;
-
-	std::unique_ptr<ParticleEmitter> emitter_;
-
-	bool roop = true;
+	InputHandler* inputHandler_ = nullptr;
+	ICommand* iCommand_ = nullptr;
+	Player* player_;
 };

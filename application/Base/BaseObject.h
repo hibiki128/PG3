@@ -21,6 +21,8 @@ protected:
 	//カラー
 	ObjColor objColor_;
 
+	bool lighting_ = true;
+
 public:
 
 	/// ===================================================
@@ -35,6 +37,8 @@ public:
 	virtual void CreateModel(const std::string modelname);
 
 	virtual void DebugTransform(const std::string className);
+
+	virtual void SetLighting(bool lighting);
 
 	// 中心座標取得
 	virtual Vector3 GetWorldPosition() const;
