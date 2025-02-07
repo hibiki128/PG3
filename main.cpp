@@ -1,31 +1,29 @@
 #include <iostream>
-#include <thread>
-#include <mutex>
-#include <condition_variable>
+#include <string>
+#include <chrono>
 
-std::mutex mtx;
-std::condition_variable cv;
-int currentThread = 1;
-
-// スレッド関数
-void printThread(int id) {
-    std::unique_lock<std::mutex> lock(mtx);
-    cv.wait(lock, [id]() { return currentThread == id; });
-    std::cout << "thread " << id << std::endl;
-    currentThread++;
-    cv.notify_all();
-}
+// 時間計測用のエイリアス
+using namespace std::chrono;
 
 int main() {
-    // スレッドの作成
-    std::thread t1(printThread, 1);
-    std::thread t2(printThread, 2);
-    std::thread t3(printThread, 3);
+    // 100,000文字の文字列を作成
+    std::string long_string(1000000, 'a');
 
-    // スレッドの終了待ち
-    t1.join();
-    t2.join();
-    t3.join();
+    std::cout << "100,000文字を移動とコピーで比較しました。\n";
+
+    // コピーにかかる時間を計測
+    auto start_copy = high_resolution_clock::now();
+    std::string copy_string = long_string;  // コピー
+    auto end_copy = high_resolution_clock::now();
+    auto duration_copy = duration_cast<microseconds>(end_copy - start_copy);
+    std::cout << "コピー : " << duration_copy.count() << " μs\n";
+
+    // 移動にかかる時間を計測
+    auto start_move = high_resolution_clock::now();
+    std::string move_string = std::move(long_string);  // 移動
+    auto end_move = high_resolution_clock::now();
+    auto duration_move = duration_cast<microseconds>(end_move - start_move);
+    std::cout << "移動 : " << duration_move.count() << " μs\n";
 
     return 0;
 }
