@@ -9,9 +9,6 @@
 #include"Object3d.h"
 #include"WorldTransform.h"
 #include"ParticleEmitter.h"
-#include"application/Player/Player.h"
-#include"application/Input/InputHandler.h"
-#include"application/Command/Command.h"
 
 class TitleScene :public BaseScene
 {
@@ -45,6 +42,7 @@ public: // メンバ関数
 	ViewProjection* GetViewProjection()override { return &vp_; }
 
 private:
+
 	void Debug();
 
 	void CameraUpdate();
@@ -61,7 +59,4 @@ private:
 	ViewProjection vp_;
 	std::unique_ptr<DebugCamera> debugCamera_;
 
-	InputHandler* inputHandler_ = nullptr;
-	ICommand* iCommand_ = nullptr;
-	Player* player_;
 };

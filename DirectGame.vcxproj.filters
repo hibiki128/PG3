@@ -111,9 +111,6 @@
     <Filter Include="ソースファイル\application\Base">
       <UniqueIdentifier>{faf8b8dc-bf7d-4fc7-ad07-1dd625a6b9a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソースファイル\application\Player">
-      <UniqueIdentifier>{657e5fb2-989e-46c9-ae16-2c6e861bfe76}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="externals\imgui\imgui.cpp">
@@ -308,18 +305,17 @@
     <ClCompile Include="myEngine\3d\transform\ObjColor.cpp">
       <Filter>ソースファイル\myEngine\3d\color</Filter>
     </ClCompile>
-    <ClCompile Include="application\Player\Player.cpp">
-      <Filter>ソースファイル\application\Player</Filter>
+    <ClCompile Include="scene\SelectScene.cpp">
+      <Filter>ソースファイル\scene</Filter>
     </ClCompile>
-    <ClCompile Include="application\Command\Command.cpp">
+    <ClCompile Include="scene\ClearScene.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="application\Input\InputHandler.cpp">
+    <ClCompile Include="scene\DemoScene.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".editorconfig" />
     <None Include="resources\shaders\Particle\Particle.hlsli">
       <Filter>リソース ファイル\Particle</Filter>
     </None>
@@ -334,6 +330,9 @@
     </None>
     <None Include="resources\shaders\OffScreen\FullScreen.hlsli">
       <Filter>リソース ファイル\OffScreen</Filter>
+    </None>
+    <None Include=".editorconfig">
+      <Filter>ソースファイル</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -550,11 +549,11 @@
     <ClInclude Include="myEngine\3d\transform\ObjColor.h">
       <Filter>ソースファイル\myEngine\3d\color</Filter>
     </ClInclude>
-    <ClInclude Include="application\Player\Player.h">
-      <Filter>ソースファイル\application\Player</Filter>
+    <ClInclude Include="scene\SelectScene.h">
+      <Filter>ソースファイル\scene</Filter>
     </ClInclude>
-    <ClInclude Include="application\Command\Command.h" />
-    <ClInclude Include="application\Input\InputHandler.h" />
+    <ClInclude Include="scene\ClearScene.h" />
+    <ClInclude Include="scene\DemoScene.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="resources\shaders\Particle\Particle.PS.hlsl">
@@ -611,6 +610,7 @@
     <FxCompile Include="resources\shaders\OffScreen\RadialBlur.PS.hlsl">
       <Filter>リソース ファイル\OffScreen</Filter>
     </FxCompile>
+    <FxCompile Include="resources\shaders\OffScreen\Cinematic.PS.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="externals\imgui\LICENSE.txt">

@@ -51,14 +51,13 @@ void MyGame::Draw()
 	}
 	sceneManager_->Draw();
 
-	spriteCommon->DrawCommonSetting();
-	sceneManager_->DrawTransition();
 
 	dxCommon->PreDraw();
 	offscreen_->SetProjection(sceneManager_->GetBaseScene()->GetViewProjection()->matProjection_);
 	offscreen_->Draw();
 	dxCommon->TransitionDepthBarrier();
 	sceneManager_->DrawForOffScreen();
+	sceneManager_->DrawTransition();
 
 #ifdef _DEBUG
 	ImGuiManager::GetInstance()->Draw();

@@ -43,7 +43,7 @@ private:
 	std::string filename_;
 	std::string directorypath_;
 
-	static bool isGltf;
+	bool isGltf;
 
 	Matrix4x4 localMatrix;
 
@@ -68,6 +68,9 @@ public:
 	void SetAnimator(Animator* animator) { animator_ = animator; }
 	void SetSkin(Skin* skin) { skin_ = skin; }
 	void SetBone(Bone* bone) { bone_ = bone; }
+	void SetTextureIndex(const std::string& filePath);
+	void SetMaterialData(const MaterialData& materialData) { modelData.material = materialData; }
+	MaterialData GetMaterialData() { return modelData.material; }
 
 	ModelData GetModelData() { return modelData; }
 
@@ -81,8 +84,8 @@ private:
 	void CreateVartexData();
 
 	/// <summary>
-    /// indexの作成
-    /// </summary>
+	/// indexの作成
+	/// </summary>
 	void CreateIndexResource();
 
 	/// <summary>
@@ -91,7 +94,7 @@ private:
 	/// <param name="directoryPath"></param>
 	/// <param name="filename"></param>
 	/// <returns></returns>
-	static MaterialData LoadMaterialTemplateFile(const std::string& directoryPath, const std::string& filename);
+	MaterialData LoadMaterialTemplateFile(const std::string& directoryPath, const std::string& filename);
 
 	/// <summary>
 	///  .objファイルの読み取り
@@ -99,7 +102,7 @@ private:
 	/// <param name="directoryPath"></param>
 	/// <param name="filename"></param>
 	/// <returns></returns>
-	static ModelData LoadModelFile(const std::string& directoryPath, const std::string& filename);
+	ModelData LoadModelFile(const std::string& directoryPath, const std::string& filename);
 
 	/// <summary>
 	/// ノード読み取り

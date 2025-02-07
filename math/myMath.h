@@ -6,6 +6,21 @@
 #include <Vector3.h>
 #include <Quaternion.h>
 
+struct Sphere {
+	Vector3 center; // !< 中心点
+	float radius;   // !< 半径
+};
+struct AABB {
+	Vector3 min; //!< 最小点
+	Vector3 max; //!< 最大点
+};
+struct OBB {
+	Vector3 rotationCenter;  // 回転中心
+	Vector3 scaleCenter;     // スケール中心
+	Vector3 scaleCenterRotated; // 回転後のスケール中心
+	Vector3 size;            // サイズ
+	Vector3 orientations[3]; // 各軸の方向ベクトル
+};
 
 class ViewProjection;
 
@@ -25,6 +40,10 @@ Matrix4x4 MakeTranslateMatrix(const Vector3& translate);
 
 // 拡大縮小行列
 Matrix4x4 MakeScaleMatrix(const Vector3& scale);
+
+Matrix4x4 MakeOBBWorldMatrix(const OBB& obb, const Matrix4x4& rotateMatrix);
+AABB ConvertOBBToAABB(const OBB& obb);
+float getProjection(const Vector3& axis, const OBB& obb);
 
 // 座標変換
 Vector3 Transformation(const Vector3& vector, const Matrix4x4& matrix);

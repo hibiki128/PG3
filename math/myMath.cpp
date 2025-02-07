@@ -29,6 +29,25 @@ Matrix4x4 MakeTranslateMatrix(const Vector3& translate) { return { 1, 0, 0, 0, 0
 
 Matrix4x4 MakeScaleMatrix(const Vector3& scale) { return { scale.x, 0, 0, 0, 0, scale.y, 0, 0, 0, 0, scale.z, 0, 0, 0, 0, 1 }; }
 
+Matrix4x4 MakeOBBWorldMatrix(const OBB& obb, const Matrix4x4& rotateMatrix) {
+	Matrix4x4 translationMatrix = MakeTranslateMatrix(obb.scaleCenterRotated);
+	return rotateMatrix * translationMatrix;
+}
+
+AABB ConvertOBBToAABB(const OBB& obb) {
+	AABB aabb;
+	aabb.min = { -obb.size.x, -obb.size.y, -obb.size.z };
+	aabb.max = { obb.size.x, obb.size.y, obb.size.z };
+	return aabb;
+}
+
+// 分離軸に対するOBBの射影範囲を計算
+float getProjection(const Vector3& axis, const OBB& obb) {
+	return (obb.size.x * abs(axis.Dot(obb.orientations[0])) +
+		obb.size.y * abs(axis.Dot(obb.orientations[1])) +
+		obb.size.z * abs(axis.Dot(obb.orientations[2])));
+}
+
 Vector3 Transformation(const Vector3& vector, const Matrix4x4& matrix) {
 	Vector3 result;
 	result.x = vector.x * matrix.m[0][0] + vector.y * matrix.m[1][0] + vector.z * matrix.m[2][0] + 1.0f * matrix.m[3][0];
@@ -221,7 +240,7 @@ Matrix4x4 MakeViewPortMatrix(float left, float top, float width, float height, f
 
 Vector3 QuaternionToAxis(const Quaternion& q)
 {
-	Quaternion normalizedQ = q.Normalize(); 
+	Quaternion normalizedQ = q.Normalize();
 
 	// 回転軸の計算: ベクトル部分(x, y, z)が回転軸になる
 	Vector3 axis(normalizedQ.x, normalizedQ.y, normalizedQ.z);
