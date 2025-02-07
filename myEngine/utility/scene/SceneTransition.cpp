@@ -12,7 +12,7 @@ SceneTransition::~SceneTransition() {}
 
 void SceneTransition::Initialize() {
     sprite_ = std::make_unique<Sprite>();
-    sprite_->Initialize("debug/transition1x1.png", {0, 0}, {1.0f, 1.0f, 1.0f, 1.0f});
+    sprite_->Initialize("debug/black1x1.png", {0, 0}, {1.0f, 1.0f, 1.0f, 1.0f});
     sprite_->SetSize(Vector2(1280, 720)); // 画面全体を覆うサイズ
     sprite_->SetAlpha(0.0f);              // 最初は完全に透明
     duration_ = 1.0f;                     // フェードの持続時間（例: 1秒）
@@ -36,7 +36,7 @@ void SceneTransition::Initialize() {
     for (int row = 0; row < rows; ++row) {
         for (int col = 0; col < cols; ++col) {
             auto sprite = std::make_unique<Sprite>();
-            sprite->Initialize("debug/transition1x1.png",
+            sprite->Initialize("debug/black1x1.png",
                                {col * 80.0f, row * 80.0f}, // 位置を設定
                                defaultColor,
                                {0.5f, 0.5f});     // 中心をアンカーポイントに
